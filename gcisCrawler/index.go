@@ -15,14 +15,8 @@ import (
     "bufio"
 )
 
-type company struct {
-    Id      string
-    Type    string
-    Name    string
-}
-
 func main() {
-    file, err := os.Open("index.csv") // For read access.
+    file, err := os.Open("test.csv") // For read access.
     if err != nil {
         log.Fatal(err)
     }
@@ -36,19 +30,16 @@ func main() {
     writeCompany := bufio.NewWriter(companyFile)
     writeSubCompany := bufio.NewWriter(subCompanyFile)
     for{
-       //每次读取一行
+
         line , _ := br.ReadString('\n')
         //stringSlice []string
         stringSlice := strings.Split(line,",")
         if stringSlice[1] == "商業登記" {
-            business, _ := writeBusiness.WriteString(line)
-            fmt.Printf("wrote %d bytes\n", business)
+            writeBusiness.WriteString(line + "\n")
         }else if stringSlice[1] == "公司" {
-            company, _ := writeCompany.WriteString(line)
-            fmt.Printf("wrote %d bytes\n", company)
+            writeCompany.WriteString(line + "\n")
         }else if stringSlice[1] == "分公司" {
-            subCompany, _ := writeSubCompany.WriteString(line)
-            fmt.Printf("wrote %d bytes\n", subCompany)
+            writeSubCompany.WriteString(line + "\n")
         }
         fmt.Printf("%v",line)
    }
