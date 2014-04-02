@@ -75,28 +75,31 @@ def JsonData(inputType,inputNumber):
 	file.write(data_string)
 	file.close()
 
-maxCount = 300 #網址規則判斷
-count = 1
-inputType = 0
-typeList=['A','B','C','D','E','F']
+if __name__ == "__main__":
+	maxCount = 300 #網址規則判斷
+	count = 1
+	inputType = 0
+	typeList=['A','B','C','D','E','F']
 
-while (inputType<=5):
-	while (count<=maxCount):
-		if(count//100>=1):
-			print(typeList[inputType],inputNumber)
-			inputNumber = '0' + str(count)
-			JsonData(typeList[inputType],str(inputNumber))
-			count += 1
-		else:
-			if(count//10>=1):
-				inputNumber = '00' + str(count)
+	while (inputType<=5):
+		while (count<=maxCount):
+			if(count//100>=1):
 				print(typeList[inputType],inputNumber)
-				JsonData(typeList[inputType],inputNumber)
+				inputNumber = '0' + str(count)
+				JsonData(typeList[inputType],str(inputNumber))
 				count += 1
 			else:
-				inputNumber = '000' + str(count)
-				print(typeList[inputType],inputNumber)
-				JsonData(typeList[inputType],inputNumber)
-				count += 1
-	inputType+=1
-	count=1
+				if(count//10>=1):
+					inputNumber = '00' + str(count)
+					print(typeList[inputType],inputNumber)
+					JsonData(typeList[inputType],inputNumber)
+					count += 1
+				else:
+					inputNumber = '000' + str(count)
+					print(typeList[inputType],inputNumber)
+					JsonData(typeList[inputType],inputNumber)
+					count += 1
+		inputType+=1
+		count=1
+
+	import jsonAdjust

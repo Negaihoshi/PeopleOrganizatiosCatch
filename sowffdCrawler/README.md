@@ -1,14 +1,24 @@
 sowffdCrawler
 =============
 
-##usage
+##Introduction
+  這是一個簡單抓取慈善福利基金會名單的爬蟲。
+
+  資料來源：http://sowffd.sfaa.gov.tw/CharityFunds/charity_recentNews.do
+
+##Requirements
+
+    BeautifulSoup ver.4+
+
+##Usage
 
     Python sowffdGet.py
 
 ##Output
 
     data.json
-    
+    data2.json
+
 ##Data Sample
 
       {
@@ -38,3 +48,5 @@ sowffdCrawler
         "董事長": "林元生", 
         "地址": "台北市中山區雙城街49巷6之1號3樓"
       }
+
+##Todo
