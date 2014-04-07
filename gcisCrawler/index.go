@@ -1,8 +1,8 @@
 /*
 * @Author: rtseng
 * @Date:   2014-04-02 16:16:13
-* @Last Modified by:   Negaihoshi
-* @Last Modified time: 2014-04-03 02:30:35
+* @Last Modified by:   rtseng
+* @Last Modified time: 2014-04-07 13:30:59
  */
 
 package main
@@ -16,7 +16,7 @@ import (
 )
 
 func main() {
-	file, err := os.Open("test.csv") // For read access.
+	file, err := os.Open("index.csv") // For read access.
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -42,7 +42,7 @@ func main() {
 		//stringSlice []string
 		line := br.Text()
 		stringSlice := strings.Split(line, ",")
-		fmt.Printf("%#v\n", stringSlice)
+		//fmt.Printf("%#v\n", stringSlice)
 		if stringSlice[1] == "商業登記" {
 			writeBusiness.WriteString(line + "\n")
 		} else if stringSlice[1] == "公司" {
@@ -50,7 +50,7 @@ func main() {
 		} else if stringSlice[1] == "分公司" {
 			writeSubCompany.WriteString(line + "\n")
 		}
-		fmt.Printf("%v", line)
+		fmt.Printf("%v\n", line)
 	}
 	if err := br.Err(); err != nil {
 		log.Fatal(err)

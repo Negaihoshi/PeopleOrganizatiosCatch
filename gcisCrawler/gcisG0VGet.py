@@ -3,12 +3,48 @@
 # @Author: rtseng
 # @Date:   2014-03-12 14:14:13
 # @Last Modified by:   rtseng
-# @Last Modified time: 2014-03-17 15:49:09
+# @Last Modified time: 2014-04-07 17:58:56
 
 import urllib.request
 import json
 from bs4 import BeautifulSoup
 import requests
+import umsgpack
+
+def filePaser(fileData):
+    for line in fileData.split('\n'):
+        try:
+            dataSplit = line.split(',')
+            dataStruct['編號'] = dataSplit[0]
+            dataStruct['分類'] = dataSplit[1]
+            dataStruct['名稱'] = dataSplit[2]
+            print(dataStruct['編號'],dataStruct['分類'])
+
+            if dataStruct['分類'] == '公司':
+                companyfile = open('companyData.txt', 'a+', encoding='UTF-8')
+                umsgpack.packb({line})
+                companyfile.write(line+'\n')
+                companyfile.close()
+            elif dataStruct['分類'] == '商業登記':
+                businessfile = open('businessData.txt', 'a+', encoding='UTF-8')
+                businessfile.write(line+'\n')
+                businessfile.close()
+            else:
+                subCompanyfile = open('subCompanyData.txt', 'a+', encoding='UTF-8')
+                subCompanyfile.write(line+'\n')
+                subCompanyfile.close()
+
+        except IndexError as e:
+            print (e)
+            print(line)
+        except UnicodeEncodeError as e:
+            print (e)
+        except AttributeError as e:
+            print (e)
+            print(line)
+            errorFile = open("error.json","a+",encoding="utf-8")
+            errorFile.write(line+'\n')
+            errorFile.close()
 
 def BSPaser(req):
     print(req)
@@ -29,5 +65,7 @@ def WebRequest(url):
 
 if __name__ == "__main__":
     #JsonData(str(243368320))
-
     WebRequest('http://company.g0v.ronny.tw/api/show/'+'00000607')
+    filePaser('business.txt')
+    filePaser('company.txt')
+    filePaser('subcompany.txt')
