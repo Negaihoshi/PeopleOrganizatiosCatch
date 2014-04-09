@@ -3,7 +3,7 @@
 # @Author: rtseng
 # @Date:   2014-03-12 14:14:13
 # @Last Modified by:   rtseng
-# @Last Modified time: 2014-04-07 17:58:56
+# @Last Modified time: 2014-04-09 13:58:12
 
 import urllib.request
 import json
@@ -65,7 +65,7 @@ def WebRequest(url):
 
 if __name__ == "__main__":
     #JsonData(str(243368320))
-    WebRequest('http://company.g0v.ronny.tw/api/show/'+'00000607')
+    WebRequest('http://company.g0v.ronny.tw/api/show/'+'97751885')
     filePaser('business.txt')
     filePaser('company.txt')
     filePaser('subcompany.txt')
